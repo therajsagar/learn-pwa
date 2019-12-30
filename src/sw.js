@@ -1,4 +1,6 @@
-console.log('In SW.js')
+console.log('%cInside Service-Worker file -> SW.js', 'background: green; color: white; display: block;')
 
-workbox.skipWaiting()
-workbox.clientsClaim()
+// eslint-disable-next-line no-undef
+const { skipWaiting, clientsClaim } = workbox.core
+skipWaiting()
+clientsClaim()

@@ -49,8 +49,8 @@ export default class App extends Component {
   };
 
   handleChange = e => {
-    const todoItem = e.target.value.trim();
-    if (todoItem) {
+    const todoItem = e.target.value;
+    if (todoItem.trim()) {
       this.setState({ todoItem });
     }
   };
@@ -89,29 +89,29 @@ export default class App extends Component {
           ) : !items.length ? (
             <div className="alert alert-secondary">No items - all done!</div>
           ) : (
-            <table className="table table-striped">
-              <tbody>
-                {items.map((item, i) => {
-                  return (
-                    <tr key={item.id} className="row">
-                      <td className="col-1">{i + 1}</td>
-                      <td className="col-10">{item.item}</td>
-                      <td className="col-1">
-                        <button
-                          type="button"
-                          className="close"
-                          aria-label="Close"
-                          onClick={() => this.deleteItem(item.id)}
-                        >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          )}
+                <table className="table table-striped">
+                  <tbody>
+                    {items.map((item, i) => {
+                      return (
+                        <tr key={item.id} className="row">
+                          <td className="col-1">{i + 1}</td>
+                          <td className="col-10">{item.item}</td>
+                          <td className="col-1">
+                            <button
+                              type="button"
+                              className="close"
+                              aria-label="Close"
+                              onClick={() => this.deleteItem(item.id)}
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              )}
         </div>
       </div>
     );

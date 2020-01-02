@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+
+const headers = { "Content-Type": "application/json" }
+
 export default class App extends Component {
   state = {
     items: [],
     loading: true,
-    todoItem: ""
+    todoItem: "",
+    onLine: navigator.onLine
   };
 
   componentDidMount() {
@@ -14,6 +18,18 @@ export default class App extends Component {
       .then(items => {
         this.setState({ items, loading: false });
       });
+    window.addEventListener('online', this.setOffineOnlineStatus)
+    window.addEventListener('offline', this.setOffineOnlineStatus)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('online', this.setOffineOnlineStatus)
+    window.removeEventListener('offline', this.setOffineOnlineStatus)
+  }
+
+
+  setOffineOnlineStatus = () => {
+    this.setState({ onLine: navigator.onLine })
   }
 
   addItem = e => {
@@ -22,9 +38,7 @@ export default class App extends Component {
     fetch("http://localhost:4567/items.json", {
       method: "POST",
       body: JSON.stringify({ item: this.state.todoItem }),
-      headers: {
-        "Content-Type": "application/json"
-      }
+      headers
     })
       .then(response => response.json())
       .then(items => {
@@ -38,9 +52,7 @@ export default class App extends Component {
     fetch("http://localhost:4567/items.json", {
       method: "DELETE",
       body: JSON.stringify({ id: itemId }),
-      headers: {
-        "Content-Type": "application/json"
-      }
+      headers
     })
       .then(response => response.json())
       .then(items => {
@@ -56,7 +68,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { todoItem, loading, items } = this.state;
+    const { todoItem, loading, items, onLine } = this.state;
     return (
       <div className="App">
         <nav className="navbar navbar-light bg-light">
@@ -64,6 +76,7 @@ export default class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             Todo List
           </span>
+          {!onLine && <span className="badge badge-danger my-3">Offline</span>}
         </nav>
 
         <div className="px-3 py-2">

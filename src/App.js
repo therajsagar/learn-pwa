@@ -42,7 +42,11 @@ export default class App extends Component {
     })
       .then(response => response.json())
       .then(items => {
-        this.setState({ items });
+        if (items.error) {
+          alert(items.error)
+        } else {
+          this.setState({ items })
+        }
       });
 
     this.setState({ todoItem: "" });
@@ -56,7 +60,11 @@ export default class App extends Component {
     })
       .then(response => response.json())
       .then(items => {
-        this.setState({ items });
+        if (items.error) {
+          alert(items.error)
+        } else {
+          this.setState({ items })
+        }
       });
   };
 

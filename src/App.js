@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 const headers = { "Content-Type": "application/json" }
+const URL = "http://192.168.43.118:4567/items.json"
 
 export default class App extends Component {
   state = {
@@ -13,7 +14,7 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:4567/items.json")
+    fetch(URL)
       .then(response => response.json())
       .then(items => {
         this.setState({ items, loading: false });
@@ -35,7 +36,7 @@ export default class App extends Component {
   addItem = e => {
     e.preventDefault();
 
-    fetch("http://localhost:4567/items.json", {
+    fetch(URL, {
       method: "POST",
       body: JSON.stringify({ item: this.state.todoItem }),
       headers
@@ -53,7 +54,7 @@ export default class App extends Component {
   };
 
   deleteItem = itemId => {
-    fetch("http://localhost:4567/items.json", {
+    fetch(URL, {
       method: "DELETE",
       body: JSON.stringify({ id: itemId }),
       headers

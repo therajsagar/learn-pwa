@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/learn-pwa/static/css/main.47cf4e2a.chunk.css",
+    "main.js": "/learn-pwa/static/js/main.b68cc2fd.chunk.js",
+    "main.js.map": "/learn-pwa/static/js/main.b68cc2fd.chunk.js.map",
+    "runtime-main.js": "/learn-pwa/static/js/runtime-main.aabb40e6.js",
+    "runtime-main.js.map": "/learn-pwa/static/js/runtime-main.aabb40e6.js.map",
+    "static/js/2.d9829571.chunk.js": "/learn-pwa/static/js/2.d9829571.chunk.js",
+    "static/js/2.d9829571.chunk.js.map": "/learn-pwa/static/js/2.d9829571.chunk.js.map",
+    "index.html": "/learn-pwa/index.html",
+    "precache-manifest.32b7e6dcea88981096bfbb18803394cd.js": "/learn-pwa/precache-manifest.32b7e6dcea88981096bfbb18803394cd.js",
+    "service-worker.js": "/learn-pwa/service-worker.js",
+    "static/css/main.47cf4e2a.chunk.css.map": "/learn-pwa/static/css/main.47cf4e2a.chunk.css.map",
+    "static/js/2.d9829571.chunk.js.LICENSE": "/learn-pwa/static/js/2.d9829571.chunk.js.LICENSE",
+    "static/media/logo.svg": "/learn-pwa/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aabb40e6.js",
+    "static/js/2.d9829571.chunk.js",
+    "static/css/main.47cf4e2a.chunk.css",
+    "static/js/main.b68cc2fd.chunk.js"
+  ]
+}

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-undef */
 const { core: { skipWaiting, clientsClaim }, precaching, routing } = workbox

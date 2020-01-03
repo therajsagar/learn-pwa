@@ -43,5 +43,13 @@ self.addEventListener('fetch', event => {
     }
 })
 
+self.addEventListener('push', event => {
+    event.waitUntil(
+        self.registration.showNotification(
+            'TodoList',
+            { body: event.data.text() }
+        )
+    )
+})
 
 precaching.precacheAndRoute(self.__precacheManifest || [])

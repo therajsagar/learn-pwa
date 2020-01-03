@@ -8,10 +8,47 @@ import './App.css';
 import GreyProfile from './grey_profile.png'
 import Back from './back.png'
 
-const ITEMS_URL = "http://192.168.43.118:4567/items.json"
+const ITEMS_URL = "http://192.168.1.5:4567/items.json"
 const headers = { "Content-Type": "application/json" }
 
+function urlB64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
 const Profile = () => {
+
+  function subscribe() {
+    const key = "BI_b04snZrWyurfBAIAElcW_BmM1ggFykiuJi8vf2zfg3N_CfeN7Np6s5r0Nj3QvSYGdAp_scZqsKRmEOhNqweA"
+
+    global.registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlB64ToUint8Array(key)
+    }).then(() => {
+      console.log("Subscribed!")
+    }).catch(err => {
+      console.log("Did not subscribe.")
+    })
+  }
+
+  function pushMessage() {
+    global.registration.showNotification(
+      'Test Msg',
+      { body: 'TodoApp P-Notif' }
+    )
+  }
+
+
   return (
     <div>
       <nav className="navbar navbar-light bg-light">
@@ -30,7 +67,17 @@ const Profile = () => {
         />
         <p style={{ color: '#888', fontSize: 20 }}>username</p>
       </div>
-
+      <br />
+      {window.Notification.permission === 'default' && (
+        <button onClick={subscribe}>
+          Subscribe for Notifications
+        </button>
+      )}
+      {window.Notification.permission === 'granted' && (
+        <button onClick={pushMessage}>
+          Test Push Notification
+        </button>
+      )}
     </div>
   )
 }
